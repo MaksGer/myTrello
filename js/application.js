@@ -21,6 +21,7 @@ const Application = {
                     id: parseInt(columnElement.getAttribute('data-column-id')),
                     noteIds: []
                 };
+                console.log(column.id)
                 // Собираем из DOM айдишники всех записей и помещаем в объект
                 columnElement
                     .querySelectorAll('.note')
@@ -69,18 +70,18 @@ const Application = {
 
         const getNoteById = id => object.notes.items.find(note => note.id === id);
         // Циклом создаем и выводим в DOM колонки из объекта
-        for (const { id, header, noteIds } of object.columns.items) {
-            const column = new Column(id);
+        for (let { id, header, noteIds } of object.columns.items) {
+            let column = new Column(id);
             column.element.querySelector('.column-header').textContent = header;
             mountePoint.append(column.element);
 
             // Цикл для поиска и добавления в колонки нужных заметок по id
-            for (const noteId of noteIds) {
-                const { id, content} = getNoteById(noteId);
-                const note = new Note(id, content);
-                column.add(note.element);
+            for (let noteId of noteIds) {
+                let { id, content} = getNoteById(noteId);
+                let note = new Note(id, content);
+                column.add(note);
+                console.log(id, header,noteIds)
             };
-        };
-
-    }
+        }
+    }   
 }

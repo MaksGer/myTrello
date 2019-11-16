@@ -93,7 +93,7 @@ class Note {
     };
 };
 
-Note.idCounter = 8;
+Note.idCounter = 1;
 Note.dragged = 0;
 // const Note = {
 //     idCounter:  8,
